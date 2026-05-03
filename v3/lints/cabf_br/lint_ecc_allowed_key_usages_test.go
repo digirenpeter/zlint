@@ -21,12 +21,12 @@ func TestCabfEccAllowedKeyUsages(t *testing.T) {
 		{desc: "warning - dv certificate with ecc key and keyAgreement and digitalSignature", file: "ecc_key_dv_with_key_agreement.pem", result: lint.Warn},
 	}
 
-	for _, lt := range tests {
-		cert := test.ReadTestCert(lt.file)
-		out := test.TestLintCert(cabfEccAllowedKeyUsages, cert, lint.Configuration{})
-
-		if out.Status != lt.result {
-			t.Errorf("%s: expected %s, got %s", lt.desc, lt.result, out.Status)
-		}
+	for _, tc := range tests {
+		t.Run(tc.desc, func(t *testing.T) {
+			result := test.TestLint(cabfEccAllowedKeyUsages, tc.file)
+			if result.Status != tc.result {
+				t.Errorf("expected result %v was %v - details: %v", tc.result, result.Status, result.Details)
+			}
+		})
 	}
 }
