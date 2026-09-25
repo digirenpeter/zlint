@@ -28,8 +28,6 @@
 
    === NE test cases ===
    orgid_subj_and_ext_ok_03.pem         EV cert with orgId and cabfOrgId NOT consistent, but issued before 31/1/2020
-   orgid_subj_and_ext_ok_06.pem         EV cert issued on or after the ineffective date of this lint (EVG 2.0.0), where
-                                        e_ev_subject_orgid_ext_mismatch applies instead
 
    === Fail test cases ===
    orgid_subj_and_ext_ko_01.pem         EV cert with orgId=="NTRUS+CA-1234567890" and cabfOrgId NOT consistent
